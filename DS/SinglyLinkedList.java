@@ -8,29 +8,35 @@ public class SinglyLinkedList<T> {
 	
 	public static void main(String[] args) {
 		SinglyLinkedList<String> list = new SinglyLinkedList<String>();
-		list.printList(list);
+		list.printList();
 		
-		list.append(list, "A");
-		list.append(list, "B");
-		list.append(list, "C");
+		list.append("A");
+		list.append("B");
+		list.append("C");
 
-		list.printList(list);
+		list.printList();
 	}
 	
-	public void append(SinglyLinkedList list, T data) {
-		if (null == list.head) {
-			head = createNode(data);
+	/*
+	* Appends to the end of list
+	*/
+	public void append(T data) {
+		Node cursor = this.head;
+		if (null == cursor) {
+			this.head = createNode(data);
 			return;
 		}
 
-		Node cursor = list.head;
 		while(null != cursor.next) {
 			cursor = cursor.next;
 		}
 		
 		cursor.next = createNode(data);
 	}
-
+	
+	/*
+	* Create New Node with given data
+	*/
 	public Node createNode(T data) {
 		Node<T> node = new Node<T>();
 		node.data = data;
@@ -39,8 +45,11 @@ public class SinglyLinkedList<T> {
 		return node;
 	}
 	
-	public void printList(SinglyLinkedList list) {
-		Node cursor = list.head;
+	/*
+	* Prints List
+	*/
+	public void printList() {
+		Node cursor = this.head;
 		if (null == cursor) {
 			System.out.println("Empty List");
 			return;
