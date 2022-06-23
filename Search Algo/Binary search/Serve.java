@@ -3,21 +3,20 @@ import java.io.*;
 public class Serve {
 	
 	private static int search(int[] sourceArr, int searchKey, int startIdx, int endIdx) throws IOException {
+		
 		if (startIdx > endIdx) {
 			return -1;
 		}
+		
+		int mid = (endIdx + startIdx)/2;
 
-		int midIdx = (endIdx + startIdx ) / 2;
-		if (sourceArr[midIdx] == searchKey) {
-			return midIdx;
-		} else if (sourceArr[midIdx] > searchKey) {
-			System.out.println("First");
-			return search(sourceArr, searchKey, startIdx, midIdx - 1 );
+		if (sourceArr[mid] == searchKey) {
+			return mid;
+		} else if (sourceArr[mid] > searchKey) {
+			return search(sourceArr, searchKey, startIdx, mid-1);
 		} else {
-			System.out.println("Last");
-			return search(sourceArr, searchKey, midIdx+1, endIdx);
+			return search(sourceArr, searchKey, mid+1, endIdx);
 		}
-
 	}
 	
 	public static void main(String args[]) throws IOException {

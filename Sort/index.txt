@@ -1,0 +1,11 @@
+Bubble Sort
+Insertion Sort (Right shift all elements from sorted array greater than leftmost element from unsorted array. Insert the leftmost element from unsorted to the empty space left)
+Selection Sort (Find min from unsorted array and replace with rightmost element in sorted array)
+Merge Sort (Divide and merge)
+
+
+Cycle Sort
+Heap Sort
+Quick Sort
+Shell Sort
+Radix Sort

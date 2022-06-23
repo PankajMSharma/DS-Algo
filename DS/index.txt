@@ -1,0 +1,10 @@
+LinkedList
+Stack
+Queue
+Tree
+BST
+Heap
+Graph
+DnC
+Greedy
+Dp

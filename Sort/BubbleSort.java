@@ -1,18 +1,21 @@
 public class BubbleSort {
 	private static int[] sort(int[] arr, int len) {
-		for(int i=0; i<len-1; ++i) {
-			for(int j=0; j < len - i - 1; ++j) {
-				if (arr[j] > arr[j+1]) {
-					
-					System.out.println(i + "=" + j); // to debug
-					printArray(arr); // to debug
-					
-					int temp = arr[j];
-					arr[j] = arr[j+1];
-					arr[j+1] = temp;
+
+		for (int pass=0; pass < len; ++pass) {
+			for (int ptr = 0; ptr < len - 1 - pass; ++ptr) {
+				if ( arr[ptr] > arr[ptr+1] ) {
+					swap(arr, ptr, ptr+1);
 				}
 			}
 		}
+		
+		return arr;
+	}
+	
+	private static int[] swap(int[] arr, int first, int second) {
+		arr[first] = arr[first] ^ arr[second];
+		arr[second] = arr[first] ^ arr[second];
+		arr[first] = arr[first] ^ arr[second];
 		return arr;
 	}
 	
