@@ -1,17 +1,25 @@
 import java.util.*;
 
-public class Q154 {
-	private Node head;
+public class Q154<T> {
+	private Node<T> head;
 	
-	public class Node {
-		public int data;
-		public Node next;
+	public class Node<T> {
+		public T data;
+		public Node<T> next;
 	}
 	
 	public static void main(String[] args) {
 		// For unsorted list
 		System.out.println("Creating unsorted list");
-		Q154 unsortedList = getUnsortedList();
+		Q154<Integer> unsortedList = new Q154<Integer>();
+		unsortedList.append(new Integer(1), null);
+		unsortedList.append(new Integer(0), null);
+		unsortedList.append(new Integer(0), null);
+		unsortedList.append(new Integer(2), null);
+		unsortedList.append(new Integer(1), null);
+		unsortedList.append(new Integer(0), null);
+		unsortedList.append(new Integer(2), null);
+		unsortedList.append(new Integer(1), null);
 
 		unsortedList.printList();
 		unsortedList.sortReplacingData();
@@ -20,26 +28,20 @@ public class Q154 {
 		
 		
 		System.out.println("Creating unsorted list");
-		Q154 unsortedList2 = getUnsortedList();
+		Q154<Integer> unsortedList2 = new Q154<Integer>();
+		unsortedList2.append(new Integer(1), null);
+		unsortedList2.append(new Integer(0), null);
+		unsortedList2.append(new Integer(0), null);
+		unsortedList2.append(new Integer(2), null);
+		unsortedList2.append(new Integer(1), null);
+		unsortedList2.append(new Integer(0), null);
+		unsortedList2.append(new Integer(2), null);
+		unsortedList2.append(new Integer(1), null);
 
 		unsortedList2.printList();
 		unsortedList2.sortByReplacingLinks();
 		System.out.println("After sorting");
 		unsortedList2.printList();
-	}
-	
-	private static Q154 getUnsortedList() {
-		Q154 list = new Q154();
-		
-		list.append(1, null);
-		list.append(0, null);
-		list.append(0, null);
-		list.append(2, null);
-		list.append(1, null);
-		list.append(0, null);
-		list.append(2, null);
-		list.append(1, null);
-		return list;
 	}
 	
 	/*
@@ -56,11 +58,11 @@ public class Q154 {
 		int ones = 0;
 		int twos = 0;
 		
-		Node cursor = head;
+		Node<T> cursor = head;
 		while(null != cursor) {
-			if (cursor.data == 0)
+			if (cursor.data.equals(0))
 				++zeros;
-			else if (cursor.data == 1)
+			else if (cursor.data.equals(1))
 				++ones;
 			else
 				++twos;
@@ -71,13 +73,13 @@ public class Q154 {
 		cursor = head;
 		while(cursor != null) {
 			if (zeros > 0) {
-				setData(cursor, 0);
+				setData(cursor, new Integer(0));
 				--zeros;
 			} else if (ones > 0) {
-				setData(cursor, 1);
+				setData(cursor, new Integer(1));
 				--ones;
 			} else {
-				setData(cursor, 2);
+				setData(cursor, new Integer(2));
 				--twos;
 			}
 			cursor = cursor.next;
@@ -101,11 +103,11 @@ public class Q154 {
 		Node twoHead = null;
 		Node twoTail = null;
 		
-		Node cursor = head;
+		Node<T> cursor = head;
 		while(null != cursor) {
-			Node currNext = cursor.next;
+			Node<T> currNext = cursor.next;
 			
-			if (cursor.data == 0) {
+			if (cursor.data.equals(0)) {
 				if (zeroHead == null) {
 					zeroHead = cursor;
 					zeroTail = cursor;
@@ -114,7 +116,7 @@ public class Q154 {
 					zeroTail = zeroTail.next;
 					zeroTail.next = null; // without this it would add loop in this list
 				}
-			} else if (cursor.data == 1) {
+			} else if (cursor.data.equals(1)) {
 				if (oneHead == null) {
 					oneHead = cursor;
 					oneTail = cursor;
@@ -155,15 +157,15 @@ public class Q154 {
 		}
 	}
 	
-	private void setData(Node node, int data) {
+	private void setData(Node<T> node, T data) {
 		node.data = data;
 	}
 	
 	/*
 	* Appends to the end of list
 	*/
-	public Node append(int data, Node nextNode) {
-		Node newNode = createNode(data, nextNode);
+	public Node<T> append(T data, Node<T> nextNode) {
+		Node<T> newNode = createNode(data, nextNode);
 		
 		// Add new node to head if head is empty
 		if (null == head) {
@@ -171,7 +173,7 @@ public class Q154 {
 			return newNode;
 		}
 		
-		Node ptr = head;
+		Node<T> ptr = head;
 		while(null != ptr.next) {
 			ptr = ptr.next;
 		}
@@ -183,8 +185,8 @@ public class Q154 {
 	/*
 	* Creates new node with given value and returns it
 	*/
-	private Node createNode(int value, Node nextNode) {
-		Node node = new Node();
+	private Node<T> createNode(T value, Node<T> nextNode) {
+		Node<T> node = new Node<T>();
 		node.data = value;
 		node.next = nextNode;
 		return node;
@@ -194,7 +196,7 @@ public class Q154 {
 	* Prints List
 	*/
 	public void printList() {
-		Node cursor = this.head;
+		Node<T> cursor = this.head;
 		if (null == cursor) {
 			System.out.println("Empty List");
 			return;
