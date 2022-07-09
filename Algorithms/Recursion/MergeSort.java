@@ -1,6 +1,8 @@
+
+
 public class MergeSort {
 	public static void main(String[] args) {
-		int[] arr = new int[]{5,2,8,1,-1, 7,0,8,5,7};
+		int[] arr = new int[]{5,2,8,1,-1, 7,0,8, -1, -5, -324324, 2873642, 5,7};
 		
 		print(arr);
 		sort(arr, 0, arr.length-1);
@@ -39,17 +41,22 @@ public class MergeSort {
 			}
 		}
 		
-		if (cursor1 < mid) {
-			int mid1 = (cursor1+mid)/2;
-			sort(arr, cursor1, mid1);
-			sort(arr, mid1+1, mid);
-			merge(arr, cursor1, mid1, end);
-		}
-		if (cursor2 < end) {
-			int mid2 = (cursor2+end)/2;
-			sort(arr, cursor2, mid2);
-			sort(arr, mid2+1, end);
-			merge(arr, cursor2, mid2, end);
+		// Apply shell/gap algorithm to sort unsorted part
+		int gap = (end-start)/2;
+		
+		while(gap >= 1) {
+			cursor1 = start;
+			cursor2 = start+gap;
+			while(cursor2 <= end) {
+				if (arr[cursor1] > arr[cursor2]) {
+					int temp = arr[cursor1];
+					arr[cursor1] = arr[cursor2];
+					arr[cursor2] = temp;
+				}
+				++cursor1;
+				++cursor2;
+			}
+			gap = gap/2;
 		}
 	}
 	
