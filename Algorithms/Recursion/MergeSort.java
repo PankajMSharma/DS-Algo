@@ -1,4 +1,4 @@
-
+// Merge Sort without extra space (in-place merge sort)
 
 public class MergeSort {
 	public static void main(String[] args) {
@@ -35,6 +35,12 @@ public class MergeSort {
 				int temp = arr[cursor1];
 				arr[cursor1] = arr[cursor2];
 				arr[cursor2] = temp;
+				
+				// Insertion sort on second array to keep it sorted
+				for (int i = mid+1; i < end; ++i) {
+					
+				}
+				
 				++cursor1;
 			} else {
 				++cursor2;
@@ -42,7 +48,7 @@ public class MergeSort {
 		}
 		
 		// Apply shell/gap algorithm to sort unsorted part
-		int gap = (end-start)/2;
+		/*int gap = (end-start)/2;
 		
 		while(gap >= 1) {
 			cursor1 = start;
@@ -57,7 +63,7 @@ public class MergeSort {
 				++cursor2;
 			}
 			gap = gap/2;
-		}
+		}*/
 	}
 	
 	private static void print(int[] arr) {
